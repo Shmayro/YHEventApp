@@ -1,0 +1,82 @@
+.footer{
+  --position:absolute;
+  --bottom:0px;
+  --width: 100%;
+}
+.hearth{
+	color: red;
+	font-size: 20px;
+}
+.Event{
+	border: 1px solid rgb(222, 221, 210); 
+	border-radius: 6px; 
+	overflow: auto;
+}
+.Event > a{
+	text-decoration: inherit;
+	color: inherit;
+}
+.EventTitle{
+	padding: 5px;
+	 font-weight: bold;
+}
+.hrEvent{
+	margin: 0px;
+}
+.EventLocation{
+	padding: 5px;
+	float: left;
+	width: 70%;
+	border-right: 1px solid rgb(222, 221, 210);
+}
+.EventPlaces{
+	padding: 5px;
+	float: right;
+}
+.Event > .logoEvent {
+    padding: 0px 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #FFF !important;
+    height: 14px;
+    line-height: 14px;
+    opacity: 0.75;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}
+.location {
+    padding: 0px 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #FFF !important;
+    height: 14px;
+    line-height: 14px;
+    opacity: 0.75;
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+}
+.soloTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding_left: 20px;
+    background: #2c3f52;
+    color: #fff;
+    z-index: 0;
+    margin: 20px;
+}
+figure:hover .location{
+    bottom: 102px;
+}
+figure:hover .soloTitle{
+    z-index: 99;
+}
+.dates{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+}

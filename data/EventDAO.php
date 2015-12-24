@@ -10,6 +10,10 @@ require_once("Event.php");
  */
 $ShowAllEventStatement = $db->prepare("select * from Event");
 
+$ShowAllEventLimitedStatement = $db->prepare("select * from Event limit :fromnumber,:nbrElem");
+$ShowAllEventLimitedStatement->bindParam(":fromnumber", $fromnumber);
+$ShowAllEventLimitedStatement->bindParam(":nbrElem", $nbrElem);
+
 $ShowEventStatement = $db->prepare("select * from Event WHERE idEvent=:idEvent");
 $ShowEventStatement->bindParam(":idEvent", $idEvent);
 
@@ -41,6 +45,20 @@ class EventDAO
         global $ShowAllEventStatement;
         if ($ShowAllEventStatement->execute()) {
             while ($obj = $ShowAllEventStatement->fetchObject()) {
+                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent);
+                $EventTable[] = $eventObj;
+            }
+            return $EventTable;
+        }
+    }
+    public function ShowAllEventsLimited($from,$number)
+    {
+        $EventTable = null;
+        global $ShowAllEventLimitedStatement;
+        global $fromnumber;
+        global $nbrElem;
+        if ($ShowAllEventLimitedStatement->execute()) {
+            while ($obj = $ShowAllEventLimitedStatement->fetchObject()) {
                 $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent);
                 $EventTable[] = $eventObj;
             }
