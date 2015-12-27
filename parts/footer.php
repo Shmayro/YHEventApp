@@ -48,7 +48,6 @@
 </footer>
 <script type="text/javascript" src="js/toucheffects.js"></script>
 <script type="text/javascript" src="js/moment-with-locales.js"></script>
-</div>
 
 
 </body>

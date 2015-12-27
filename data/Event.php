@@ -16,8 +16,10 @@ class Event
     public $lieuEventPic;
     public $datedebutEvent;
     public $datefinEvent;
+    public $datedebutInsc;
+    public $datefinInsc;
 
-    public function __construct($idEvent, $titleEvent, $logoEvent, $lieuEvent, $lieuEventPic, $datedebutEvent, $datefinEvent)
+    public function __construct($idEvent, $titleEvent, $logoEvent, $lieuEvent, $lieuEventPic, $datedebutEvent, $datefinEvent, $datedebutInsc, $datefinInsc)
     {
         $this->idEvent = Securite::bdd($idEvent);
         $this->titleEvent = Securite::bdd($titleEvent);
@@ -26,6 +28,8 @@ class Event
         $this->lieuEventPic = Securite::bdd($lieuEventPic);
         $this->datedebutEvent = Securite::bdd($datedebutEvent);
         $this->datefinEvent = Securite::bdd($datefinEvent);
+        $this->datedebutInsc = Securite::bdd($datedebutInsc);
+        $this->datefinInsc = Securite::bdd($datefinInsc);
     }
 }
 

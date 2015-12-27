@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Inscription</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="FormInsc" method="post" action="bimo.php">
+                <form class="form-horizontal" role="form" id="FormInsc" method="post" action="parts/InscriptionAdd.php">
                     <div class="form-group">
                         <div class="col-sm-2">
                             <label class="control-label" for="genre" required="required">Genre</label>
@@ -118,18 +118,20 @@
                         $("#FormInsc").submit(function (e) {
                             e.preventDefault();
                             var $this = $(this); // L'objet jQuery du formulaire
+
                             $.ajax({
-                                url: $this.attr('index.html'),
-                                type: $this.attr('post'),
-                                data: $this.serialize(),
+                                url: $this.attr('action'),
+                                type: $this.attr('method'),
+                                data: $this.serialize()+"&totaldays="+$("#repas").find('input:checkbox').length+"&idEv="+$("#submitbtnInsc").attr("value"),
                                 success: function (html) {
-                                    //alert("sumition");
+                                    $("#inscForm").find(".modal-body").append(html);
                                     $("#FormInsc,#btnInsc").hide();
                                 }
                             });
 
                         });
-                        $(".inscEventbtn").click(function () {
+                        $(document).on('click', '.inscEventbtn', function(){
+                            //alert("work");
                             moment.locale('fr');
                             var datedebut = moment($(this).parent().find(".dates > .DateDebut > .date")[0].innerHTML);
                             var datefin = moment($(this).parent().find(".dates > .DateFin > .date")[0].innerHTML);
@@ -138,11 +140,10 @@
                             $("#submitbtnInsc").attr("value", $(this).attr("id"));
                             //alert($("#submitbtnInsc").attr("value"),$(this).attr("id"));
                             var repasdate = datedebut;
-                            $("#repas").append("<div class='checkbox'><label><input name='day" + i + "' type='checkbox'>Le " + repasdate.format("dddd, Do MMMM YYYY") + "</label></div>");
-                            for (var i = 0; i < days; i++) {
+                            $("#repas").append();
+                            $("#repas").append("<div class='checkbox'><label><input name='day" + 0 + "' type='checkbox'>Le " + repasdate.format("dddd, Do MMMM YYYY") + "</label></div>");
+                            for (var i = 1; i < days; i++) {
                                 $("#repas").append("<div class='checkbox'><label><input name='day" + i + "' type='checkbox'>Le " + repasdate.add(1, "days").format("dddd, Do MMMM YYYY") + "</label></div>");
-
-
                             }
                             //alert(datedebut.diff(datefin, 'days') +" "+datedebut.format("dddd,Do MMMM YYYY, h:mm:ss a")+" "+datefin);
                         });

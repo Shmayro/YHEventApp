@@ -4,13 +4,14 @@
 	margin: 0 auto;
 	list-style: none;
 	text-align: center;
+	padding: 0px;
 }
 
 .grid li {
 	display: inline-block;
 	--width: 440px;
 	margin: 0;
-	--padding: 20px;
+	padding: 15px 15px;
 	text-align: left;
 	position: relative;
 }
@@ -40,7 +41,6 @@
 	padding: 0;
 	color: #fff;
 }
-
 
 
 

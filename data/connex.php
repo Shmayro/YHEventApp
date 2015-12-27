@@ -10,7 +10,7 @@ $dbname = "YHEventApp";
 $username = "root";
 $password = "";
 try {
-    $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    $db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
     //echo("db connecté !!<br>");
 } catch (Exception $ex) {
     echo("db Error !!");

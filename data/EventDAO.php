@@ -20,15 +20,17 @@ $ShowEventStatement->bindParam(":idEvent", $idEvent);
 $deleteEventStatement = $db->prepare("delete from Event WHERE idEvent=:idEvent");
 $deleteEventStatement->bindParam(":idEvent", $idEvent);
 
-$addEventStatement = $db->prepare("insert into Event(titleEvent,logoEvent,lieuEvent,lieuEventPic,datedebutEvent,datefinEvent) values (:titleEvent,:logoEvent,:lieuEvent,:lieuEventPic,:datedebutEvent,:datefinEvent)");
+$addEventStatement = $db->prepare("insert into Event(titleEvent,logoEvent,lieuEvent,lieuEventPic,datedebutEvent,datefinEvent,datedebutInsc,datefinInsc) values (:titleEvent,:logoEvent,:lieuEvent,:lieuEventPic,:datedebutEvent,:datefinEvent,:datedebutInsc,:datefinInsc)");
 $addEventStatement->bindParam(":titleEvent", $titleEvent);
 $addEventStatement->bindParam(":logoEvent", $logoEvent);
 $addEventStatement->bindParam(":lieuEvent", $lieuEvent);
 $addEventStatement->bindParam(":lieuEventPic", $lieuEventPic);
 $addEventStatement->bindParam(":datedebutEvent", $datedebutEvent);
 $addEventStatement->bindParam(":datefinEvent", $datefinEvent);
+$addEventStatement->bindParam(":datedebutInsc", $datedebutInsc);
+$addEventStatement->bindParam(":datefinInsc", $datefinInsc);
 
-$updateEventStatement = $db->prepare("update Event set titleEvent=:titleEvent,logoEvent=:logoEvent,lieuEvent=:lieuEvent,lieuEventPic=:lieuEventPic,datedebutEvent=:datedebutEvent,datefinEvent=:datefinEvent where idEvent=:idEvent");
+$updateEventStatement = $db->prepare("update Event set titleEvent=:titleEvent,logoEvent=:logoEvent,lieuEvent=:lieuEvent,lieuEventPic=:lieuEventPic,datedebutEvent=:datedebutEvent,datefinEvent=:datefinEvent,datedebutInsc=:datedebutInsc,datefinInsc=:datefinInsc where idEvent=:idEvent");
 $updateEventStatement->bindParam(":idEvent", $idEvent);
 $updateEventStatement->bindParam(":titleEvent", $titleEvent);
 $updateEventStatement->bindParam(":logoEvent", $logoEvent);
@@ -36,6 +38,8 @@ $updateEventStatement->bindParam(":lieuEvent", $lieuEvent);
 $updateEventStatement->bindParam(":lieuEventPic", $lieuEventPic);
 $updateEventStatement->bindParam(":datedebutEvent", $datedebutEvent);
 $updateEventStatement->bindParam(":datefinEvent", $datefinEvent);
+$addEventStatement->bindParam(":datedebutInsc", $datedebutInsc);
+$addEventStatement->bindParam(":datefinInsc", $datefinInsc);
 
 class EventDAO
 {
@@ -45,7 +49,7 @@ class EventDAO
         global $ShowAllEventStatement;
         if ($ShowAllEventStatement->execute()) {
             while ($obj = $ShowAllEventStatement->fetchObject()) {
-                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent);
+                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent, $obj->datedebutInsc, $obj->datefinInsc);
                 $EventTable[] = $eventObj;
             }
             return $EventTable;
@@ -57,9 +61,11 @@ class EventDAO
         global $ShowAllEventLimitedStatement;
         global $fromnumber;
         global $nbrElem;
+        $fromnumber=$from;
+        $nbrElem=$number;
         if ($ShowAllEventLimitedStatement->execute()) {
             while ($obj = $ShowAllEventLimitedStatement->fetchObject()) {
-                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent);
+                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent, $obj->datedebutInsc, $obj->datefinInsc);
                 $EventTable[] = $eventObj;
             }
             return $EventTable;
@@ -70,10 +76,11 @@ class EventDAO
     {
         global $ShowEventStatement;
         global $idEvent;
+        $eventObj=null;
         $idEvent = $id;
         if ($ShowEventStatement->execute()) {
             while ($obj = $ShowEventStatement->fetchObject()) {
-                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent);
+                $eventObj = new Event($obj->idEvent, $obj->titleEvent, $obj->logoEvent, $obj->lieuEvent, $obj->lieuEventPic, $obj->datedebutEvent, $obj->datefinEvent, $obj->datedebutInsc, $obj->datefinInsc);
             }
             return $eventObj;
         }
@@ -100,6 +107,8 @@ class EventDAO
         global $lieuEventPic;
         global $datedebutEvent;
         global $datefinEvent;
+        global $datedebutInsc;
+        global $datefinInsc;
 
         $titleEvent = $obj->titleEvent;
         $logoEvent = $obj->logoEvent;
@@ -107,6 +116,8 @@ class EventDAO
         $lieuEventPic = $obj->lieuEventPic;
         $datedebutEvent = $obj->datedebutEvent;
         $datefinEvent = $obj->datefinEvent;
+        $datedebutInsc = $obj->datedebutInsc;
+        $datefinInsc = $obj->datefinInsc;
 
         if ($addEventStatement->execute()) {
             return 1;
@@ -125,6 +136,8 @@ class EventDAO
         global $lieuEventPic;
         global $datedebutEvent;
         global $datefinEvent;
+        global $datedebutInsc;
+        global $datefinInsc;
 
         $idEvent = $id;
 
@@ -134,6 +147,8 @@ class EventDAO
         $lieuEventPic = $obj->lieuEventPic;
         $datedebutEvent = $obj->datedebutEvent;
         $datefinEvent = $obj->datefinEvent;
+        $datedebutInsc = $obj->datedebutInsc;
+        $datefinInsc = $obj->datefinInsc;
 
         if ($updateEventStatement->execute()) {
             return 1;

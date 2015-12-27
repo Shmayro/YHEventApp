@@ -22,8 +22,9 @@ class Inscription
     public $dept;
     public $pays;
     public $repas;
+    public $pdf;
 
-    public function __construct($idEvent, $idInsc, $genre, $nom, $prenom, $niveauExp, $email,$tel,$adressePost,$dept,$pays,$repas)
+    public function __construct($idEvent, $idInsc, $genre, $nom, $prenom, $niveauExp, $email,$tel,$adressePost,$dept,$pays,$repas,$pdf)
     {
         $this->idEvent = Securite::bdd($idEvent);
         $this->idInsc = Securite::bdd($idInsc);
@@ -37,6 +38,7 @@ class Inscription
         $this->dept = Securite::bdd($dept);
         $this->pays = Securite::bdd($pays);
         $this->repas = Securite::bdd($repas);
+        $this->pdf = Securite::bdd($pdf);
     }
 
 }
