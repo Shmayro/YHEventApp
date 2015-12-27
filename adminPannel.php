@@ -129,6 +129,19 @@ include "parts/adminCheck.php";
                 }
             });
         });
+        $(document).on('click', '.DeletetEventbtn', function(){
+            evid=$(this).attr("id");
+            if(confirm("Voulez Vous Vraiment Supprimer Cet Evenement?")) {
+                $.ajax({
+                    url: "parts/delEvent.php",
+                    type: "post",
+                    data: {EvId: $(this).attr("id")},
+                    success: function () {
+                        $("#events").click();
+                    }
+                });
+            }
+        });
         $(document).on('click', '.genpdf', function(e){
             e.preventDefault();
             $.ajax({

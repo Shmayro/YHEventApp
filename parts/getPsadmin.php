@@ -8,12 +8,13 @@
 include "adminCheck.php";
 include "../Imports.php";
 $numPage = 1;
+$numparPage=20;
 if (isset($_POST["numPage"])) {
     $numPage = Securite::bdd($_POST["numPage"]);
 }
 if (isset($_POST["EvId"])){
     $IdEv = Securite::bdd($_POST["EvId"]);
-    $Psobj = $InscDAO->ShowEventPSLimited($IdEv,$numPage - 1, 20);
+    $Psobj = $InscDAO->ShowEventPSLimited($IdEv,($numPage - 1)*$numparPage, $numparPage);
 
     foreach ((array)$Psobj as $Pobj) {
         $np=(($Pobj->genre=="Monsieur")?"M. ":"Mme ").$Pobj->nom." ".$Pobj->prenom;

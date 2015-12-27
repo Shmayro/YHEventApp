@@ -21,8 +21,8 @@
                             <label for="logoEvent" class="control-label">Logo Event</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="logoEvent" placeholder="Logo Event" name="logoEvent"
-                                   required="required">
+                            <textarea type="text" class="form-control" id="logoEvent" placeholder="Logo Event" name="logoEvent"
+                                   required="required"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -30,8 +30,8 @@
                             <label for="lieuEvent" class="control-label">Lieu Event</label>
                         </div>
                         <div class="col-sm-8">
-                            <textarea class="form-control" id="lieuEvent" placeholder="Lieu Event" name="lieuEvent"
-                                   required="required"></textarea>
+                            <input type="text" class="form-control" id="lieuEvent" placeholder="Lieu Event" name="lieuEvent"
+                                   required="required">
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,8 +87,9 @@
                         $("#closebtn").click(function () {
                             //alert("Fermeture");
                             $("#confirmsg").remove();
-                            $("#FormInsc")[0].reset();
-                            $("#FormInsc,#btnInsc").show();
+                            $("#FormEv")[0].reset();
+                            $("#FormEv,#btnEvent").show();
+                            $("#events").click();
                         });
                         $("#FormEv").submit(function (e) {
                             e.preventDefault();
@@ -99,7 +100,7 @@
                                 data: $this.serialize(),
                                 success: function (html) {
                                     $("#EvForm").find(".modal-body").append(html);
-                                    $("#FormEv,#btnInsc").hide();
+                                    $("#FormEv,#btnEvent").hide();
                                 }
                             });
 

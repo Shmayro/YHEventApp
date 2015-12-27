@@ -7,17 +7,18 @@
  */
 include "../Imports.php";
 $numPage = 1;
+$nbrparpage=6;
 if (isset($_POST["numPage"])) {
     $numPage = Securite::bdd($_POST["numPage"]);
 }
-$eventsobj = $evDAO->ShowAllEventsLimited($numPage - 1, 6);
+$eventsobj = $evDAO->ShowAllEventsLimited(($numPage - 1)*$nbrparpage, $nbrparpage);
 foreach ((array)$eventsobj as $eventobj) {
     ?>
     <li class="col-md-4">
         <figure>
             <div>
                 <h3 class="soloTitle"><?php echo Securite::html($eventobj->titleEvent); ?></h3>
-                <img src="<?php echo Securite::html($eventobj->lieuEventPic); ?>"
+                <img src="<?php echo stripslashes(stripslashes(Securite::html($eventobj->lieuEventPic))); ?>"
                      alt="<?php echo Securite::html($eventobj->titleEvent); ?>"/>
                 <div class="Location">
                     <i class="glyphicon glyphicon-map-marker"></i><?php echo Securite::html($eventobj->lieuEvent); ?>
