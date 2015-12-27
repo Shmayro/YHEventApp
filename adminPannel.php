@@ -51,6 +51,9 @@ include "parts/adminCheck.php";
                 </a>
             </li>
             <li>
+                <a data-toggle="modal" href="#" data-target="#EvForm">Ajouter Evenement</>
+            </li>
+            <li>
                 <a id="events" href="#">Events</a>
             </li>
             <li>
@@ -73,6 +76,7 @@ include "parts/adminCheck.php";
 
 <!-- jQuery -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -151,5 +155,6 @@ include "parts/adminCheck.php";
         </div>
     </div>
 </div>
+<?php include "parts/EventFormModal.php" ?>
 </html>
 

@@ -6,7 +6,18 @@
  * Time: 06:07
  */
 include "../Imports.php";
-if (isset($_POST["genre"]) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["expLvl"]) && isset($_POST["email"]) && isset($_POST["dept"]) && isset($_POST["pays"]) && isset($_POST["totaldays"]) && isset($_POST["idEv"])){
+foreach ($_POST as $key => $value)
+    echo "Field " . htmlspecialchars($key) . " is " . htmlspecialchars($value) . "<br>";
+
+Field titleEvent is regerg
+Field logoEvent is greg
+Field lieuEvent is egrg
+Field imgEvent is http://har.com
+Field datedebutInsc is gregreg
+Field datefinInsc is greg
+Field datedebutEvent is gferg
+Field datefinEvent is gerg
+if (isset($_POST["titleEvent"]) && isset($_POST["logoEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["imgEvent"]) && isset($_POST["datedebutInsc"]) && isset($_POST["datefinInsc"]) && isset($_POST["datedebutEvent"]) && isset($_POST["datefinEvent"]) && isset($_POST["idEv"])){
     $genre=$_POST["genre"];
     $nom=$_POST["nom"];
     $prenom=$_POST["prenom"];

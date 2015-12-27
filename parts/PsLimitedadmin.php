@@ -18,7 +18,7 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
             <div class="col-md-12">
                 <h1 class="text-center">Participents - <?php echo $evname;?></h1>
             </div>
-            <a class="btn btn-sm btn-primary" target="_blank" href="parts/Generatexcel.php?EvId=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-file"></i>Télécharger la liste de participants</a>  <a class="btn btn-sm btn-success genpdf" target="_blank" href="parts/Generatepdf.php?evid=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-retweet"></i>Générer Toutes les Attestations</a>
+            <a class="btn btn-sm btn-primary" target="_blank" href="parts/Generatexcel.php?EvId=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-file"></i>Télécharger la liste de participants</a>  <a class="btn btn-sm btn-success genpdf" target="_blank" href="parts/Generatepdf.php?evid=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-retweet"></i>Générer Toutes les Attestations</a>  <a class="btn btn-sm btn-success genpdf" target="_blank" href="parts/Generatepdf.php?evid=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-fo"></i>Repas</a>  <a class="btn btn-sm btn-success genpdf" target="_blank" href="parts/Generatepdf.php?evid=<?php echo $EvId;?>"><i class=" glyphicon glyphicon-stats"></i>Statistiques</a>
         </div>
         <div class="row">
             <table id="myTable" class="tablesorter table table-bordered">
