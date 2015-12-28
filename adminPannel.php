@@ -28,6 +28,7 @@ include "parts/adminCheck.php";
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/blueSortableTable/style.css">
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -155,16 +156,29 @@ include "parts/adminCheck.php";
     });
 </script>
 </body>
-<div class="modal fade">
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click', '.getextrainfos', function(e){
+            e.preventDefault();
+            $("#modalCbody").empty();
+            var title=$(this).html();
+            $.ajax({
+                url: $(this).attr("href"),
+                type: "get",
+                success: function (html) {
+                    $("#modalCbody").empty();
+
+                    $("#modalCbody").append("<h1 class='text-center'>"+title+"</h1>");
+                    $("#modalCbody").append(html);
+                }
+            });
+        });
+    });
+</script>
+<div class="modal fade" id="modalC">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body...</p>
-            </div>
+        <div id="modalCbody" class="modal-content">
+
         </div>
     </div>
 </div>

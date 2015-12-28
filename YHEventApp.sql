@@ -1,5 +1,5 @@
-/*create database YHEventApp;
-use YHEventApp;*/
+create database YHEventApp;
+use YHEventApp;
 create table Event(
 	idEvent int primary key not null auto_increment,
 	titleEvent varchar(500) not null,
@@ -11,7 +11,7 @@ create table Event(
     datedebutInsc datetime not null,
     datefinInsc datetime not null CHECK (datefinInsc>datedebutInsc)
 );
-
+insert into Event values(null,'Safari','Dans les champs des merveilles','Paris, France','https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d','2015-12-29 14:00:00','2015-12-30 18:00:00','2015-12-20 14:00:00','2015-12-28 14:00:00');
 create table inscription(
 	idEvent int not null,
     idInsc int primary key not null auto_increment,

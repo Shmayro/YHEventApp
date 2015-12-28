@@ -136,13 +136,14 @@
                             var datedebut = moment($(this).parent().find(".dates > .DateDebut > .date")[0].innerHTML);
                             var datefin = moment($(this).parent().find(".dates > .DateFin > .date")[0].innerHTML);
                             var days = datefin.diff(datedebut, 'days');//Math.round((datefin-datedebut)/(1000*60*60*24));
+                            //alert(days);
                             $("#repas").empty();
                             $("#submitbtnInsc").attr("value", $(this).attr("id"));
                             //alert($("#submitbtnInsc").attr("value"),$(this).attr("id"));
                             var repasdate = datedebut;
                             $("#repas").append();
                             $("#repas").append("<div class='checkbox'><label><input name='day" + 0 + "' type='checkbox'>Le " + repasdate.format("dddd, Do MMMM YYYY") + "</label></div>");
-                            for (var i = 1; i < days; i++) {
+                            for (var i = 1; i <= days; i++) {
                                 $("#repas").append("<div class='checkbox'><label><input name='day" + i + "' type='checkbox'>Le " + repasdate.add(1, "days").format("dddd, Do MMMM YYYY") + "</label></div>");
                             }
                             //alert(datedebut.diff(datefin, 'days') +" "+datedebut.format("dddd,Do MMMM YYYY, h:mm:ss a")+" "+datefin);
