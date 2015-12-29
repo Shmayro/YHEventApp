@@ -1,4 +1,7 @@
 <?php
+/*
+ * Header du site coté client
+ */
 include "Imports.php";
 ?>
 <html lang="fr">

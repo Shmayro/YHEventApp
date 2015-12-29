@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 18:47
+ * Affiche tout les evenement [Pas utilisé dans le projet]
  */
 $eventsobj=$evDAO->ShowAllEvents();
 ?>

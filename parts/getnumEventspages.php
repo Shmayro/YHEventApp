@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 22:01
+ * permet de retourner le nombre de pages total pour les Evenements
+ * 6 Events par page
  */
 include_once "../Imports.php";
 echo ceil(count($evDAO->ShowAllEvents())/6);

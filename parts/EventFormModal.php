@@ -1,3 +1,8 @@
+<?php
+    /**
+     * Formulaire utilisé pour la modification ou l'ajout d'un Event
+     */
+?>
 <div class="modal fade" id="EvForm">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -80,12 +85,13 @@
                 </form>
                 <script>
                     $(function () {
+                        //Click Sur Ajout ou Modif
                         $("#btnEvent").click(function () {
                             $("#submitbtnEvent").click();
 
                         });
+                        //click sur le bouton de fermeture du formulaire
                         $("#closebtn").click(function () {
-                            //alert("Fermeture");
                             $("#confirmsg").remove();
                             $("#FormEv")[0].reset();
                             $("#FormEv,#btnEvent").show();
@@ -95,11 +101,13 @@
 
                             $("#btnEvent").text("Ajouter");
                         });
+                        //Executé lors de la validation du formulaire
                         $("#FormEv").submit(function (e) {
                             e.preventDefault();
                             var $this = $(this); // L'objet jQuery du formulaire
-                            //&idEv="+$("#submitbtnInsc").attr("value")$("#submitbtnEvent")
                             var urlextraData="";
+
+                            //verification du type d'envoi (Modification ou Ajout)
                             if($("#submitbtnEvent").val()!=null)
                                 urlextraData="&idEv="+$("#submitbtnEvent").val();
                             $.ajax({

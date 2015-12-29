@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 09:13
+ * meme chose que getEvents sauf qu'on affiche des bouttons (Select,Modifier,Supprimer) au lieu du boutton d'inscription
  */
 include "adminCheck.php";
 include "../Imports.php";

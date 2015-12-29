@@ -45,9 +45,8 @@ $updateEventStatement->bindParam(":datefinInsc", $datefinInsc);
 class EventDAO
 {
     /**
+     * retourn la liste de tout les Evenements
      * @return array|null
-     *
-     * retourne la liste de tout les Evenements
      */
     public function ShowAllEvents()
     {
@@ -107,7 +106,9 @@ class EventDAO
     /**
      * supprime un evenemnt par id
      * @param $id
-     * @return int
+     * @return int <br/>
+     * 1 = Executer avec Succes <br/>
+     * 0 = Ereur danns l'execution <br/>
      */
     public function deleteEvent($id)
     {
@@ -124,7 +125,9 @@ class EventDAO
     /**
      * ajout d'un evenement dans la base de données
      * @param (Event)$obj
-     * @return int
+     * @return int  <br/>
+     * 1 = Executer avec Succes <br/>
+     * 0 = Ereur danns l'execution <br/>
      */
     public function addEvent($obj)
     {
@@ -158,7 +161,9 @@ class EventDAO
      * mise a jour d'un evenement par $id, en remplacent ces champs par les champs de (Event)$obj donnees
      * @param $id
      * @param (Event)$obj
-     * @return int
+     * @return int  <br/>
+     * 1 = Executer avec Succes <br/>
+     * 0 = Ereur danns l'execution <br/>
      */
     public function updateEvent($id, $obj)
     {

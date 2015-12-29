@@ -1,14 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: shmayro
- * Date: 26/10/15
- * Time: 14:55
+ * Class Securite Propose deux fonctions pour securiser les entrées et les sorties des données
  */
 class Securite
 {
     // Données entrantes
+    /**
+     * securise les Entrées
+     * @param $string
+     * @return int|string
+     */
     public static function bdd($string)
     {
         // On regarde si le type de string est un nombre entier (int)
@@ -24,6 +26,11 @@ class Securite
     }
 
     // Données sortantes
+    /**
+     * securise les sorties
+     * @param $string
+     * @return string
+     */
     public static function html($string)
     {
         return htmlentities($string);

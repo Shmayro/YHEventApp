@@ -168,7 +168,9 @@ class InscriptionDAO
     /**
      * Supprimer une Inscription par @id
      * @param $id
-     * @return int
+     * @return int  <br/>
+     * 1 = Executer avec Succes <br/>
+     * 0 = Ereur danns l'execution <br/>
      */
     public function deleteInscription($id)
     {
@@ -186,11 +188,11 @@ class InscriptionDAO
      * ajouter une Inscription
      * une verfication a l'interieur de la Fonction permet de tester si la periode d'inscription et encore valide
      * @param (Inscription)$obj
-     * @return int
-     * 1 = Executer avec Succes (Inscription Ajoutée)
-     * 0 = Ereur danns l'execution (Ajout Annulé)
-     * 2 = Periode d'inscription est passée (Ajout Annulé)
-     * 3 = l'Evenement de l'inscription n'existe pas (Ajout Annulé)
+     * @return int <br/>
+     * 1 = Executer avec Succes (Inscription Ajoutée) <br/>
+     * 0 = Ereur danns l'execution (Ajout Annulé) <br/>
+     * 2 = Periode d'inscription est passée (Ajout Annulé) <br/>
+     * 3 = l'Evenement de l'inscription n'existe pas (Ajout Annulé) <br/>
      */
     public function addInscription($obj)
     {
@@ -244,7 +246,9 @@ class InscriptionDAO
     /**
      * @param $id
      * @param $obj
-     * @return int
+     * @return int  <br/>
+     * 1 = Executer avec Succes <br/>
+     * 0 = Ereur danns l'execution <br/>
      */
     public function updateInscription($id, $obj)
     {

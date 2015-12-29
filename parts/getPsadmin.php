@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 26/12/2015
- * Time: 15:36
+ * Apres la verfication de la session Admin
+ * retourne un Tableau en HTML triable comportant la page des Participants demandée
+ * par defaut en affiche la première page
  */
 include "adminCheck.php";
 include "../Imports.php";
@@ -20,12 +19,12 @@ if (isset($_POST["EvId"])){
         $np=(($Pobj->genre=="Monsieur")?"M. ":"Mme ").$Pobj->nom." ".$Pobj->prenom;
     ?>
     <tr>
-        <td><?php echo $np; ?></td>
-        <td><?php echo $Pobj->niveauExp; ?></td>
-        <td><?php echo $Pobj->email; ?></td>
-        <td><?php echo $Pobj->tel; ?></td>
-        <td><?php echo $Pobj->dept; ?></td>
-        <td><?php echo $Pobj->pays; ?></td>
+        <td><?php echo Securite::html($np); ?></td>
+        <td><?php echo Securite::html($Pobj->niveauExp); ?></td>
+        <td><?php echo Securite::html($Pobj->email); ?></td>
+        <td><?php echo Securite::html($Pobj->tel); ?></td>
+        <td><?php echo Securite::html($Pobj->dept); ?></td>
+        <td><?php echo Securite::html($Pobj->pays); ?></td>
         <td><a href=""><?php if($Pobj->pdf==1)
                                     echo "<a class='btn btn-sm btn-success' target='_blank' href='parts/Getpdf.php?p=".$Pobj->idInsc."'><i class='glyphicon glyphicon-file'></i>Pdf</a>";
                                 else
@@ -35,6 +34,7 @@ if (isset($_POST["EvId"])){
 <?php }} ?>
     <script type="text/javascript">
         $(function(){
+            //activer la triabilité de la table
             $("#myTable").tablesorter();
             $("#myTable").trigger('update');
         });

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 18:48
+ * Devloppers
  */
 ?>
 <div class="section">

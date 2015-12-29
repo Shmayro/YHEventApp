@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 18:47
+ * Block de pagination des Evenenent par 6 Events dans chaque page
+ *
+ * permet de recupèrer les events en utilisant getEvents.php .
+ *
  */
 ?>
 <div class="section">
@@ -18,7 +18,9 @@
         </ul>
         <div class="row">
             <script>
+                    //nombre de pages Au total
                     var totalPages;
+                    //recupèrer le nombre de page en utilisant getnumEventspages.php
                     $.ajax({
                         url: 'parts/getnumEventspages.php',
                         success:function (html) {
@@ -28,6 +30,7 @@
                             $("#totalpages").html(" /"+html);
                         }
                     });
+                    //Afficher les Evenement selon le numero de page pour la première foie
                     $.ajax({
                         method:"POST",
                         url:'parts/getEvents.php',
@@ -38,6 +41,9 @@
                         }
                     });
                     $(function(){
+                        //Chargement complet de la page
+
+                        //click du button suivant
                         $("#prev").click(function(e){
                             e.preventDefault();
                             var num=$("#pageindex").val();
@@ -45,6 +51,7 @@
                                 num--;
                             $("#pageindex").val(num).change();
                         });
+                        //click du boutton suivant
                         $("#suiv").click(function(e){
                             e.preventDefault();
                             var num=$("#pageindex").val();
@@ -52,9 +59,15 @@
                                 num++;
                             $("#pageindex").val(num).change();
                         });
+                        /**
+                         * Evenement declancher apres chaque changement de la page
+                         * permet de recupèrer les données apartir de la page getEvents
+                         */
                         $("#pageindex").on("change input",function(){
                             var num=$("#pageindex").val();
+                            //verification du num introduit
                             if(num<=totalPages && num>=1){
+                                //numpage respectant les limites
                                 $.ajax({
                                     method:"POST",
                                     url:'parts/getEvents.php',
@@ -66,6 +79,7 @@
                                 });
                             }
                             else{
+                                //numpage hors la limites
                                 $("#pageindex").val(1).change();
                             }
                         });

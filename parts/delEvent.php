@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 27/12/2015
- * Time: 16:02
+ * Apres une verfication de la session admin.
+ *
+ * Sert a Supprimer un evenement avec tout ses Inscription
  */
 include "adminCheck.php";
 include "../Imports.php";

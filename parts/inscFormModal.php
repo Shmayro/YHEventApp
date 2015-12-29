@@ -1,3 +1,8 @@
+<?php
+    /**
+     * Formulaire utilisé pour l'ajout des inscription a des events
+     */
+?>
 <div class="modal fade" id="inscForm">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -105,16 +110,19 @@
                 </form>
                 <script>
                     $(function () {
+                        //evenement lors du click de ajout d'events
                         $("#btnInsc").click(function () {
                             $("#submitbtnInsc").click();
 
                         });
+                        //fermeture du formulaire
                         $("#closebtn").click(function () {
                             //alert("Fermeture");
                             $("#confirmsg").remove();
                             $("#FormInsc")[0].reset();
                             $("#FormInsc,#btnInsc").show();
                         });
+                        //validation du formulaire
                         $("#FormInsc").submit(function (e) {
                             e.preventDefault();
                             var $this = $(this); // L'objet jQuery du formulaire
@@ -130,6 +138,7 @@
                             });
 
                         });
+                        //evenement lors du click de la du boutton inscription
                         $(document).on('click', '.inscEventbtn', function(){
                             //alert("work");
                             moment.locale('fr');
@@ -141,7 +150,8 @@
                             $("#submitbtnInsc").attr("value", $(this).attr("id"));
                             //alert($("#submitbtnInsc").attr("value"),$(this).attr("id"));
                             var repasdate = datedebut;
-                            $("#repas").append();
+
+                            //genère une case a coché pour chaque journnée de l'event
                             $("#repas").append("<div class='checkbox'><label><input name='day" + 0 + "' type='checkbox'>Le " + repasdate.format("dddd, Do MMMM YYYY") + "</label></div>");
                             for (var i = 1; i <= days; i++) {
                                 $("#repas").append("<div class='checkbox'><label><input name='day" + i + "' type='checkbox'>Le " + repasdate.add(1, "days").format("dddd, Do MMMM YYYY") + "</label></div>");

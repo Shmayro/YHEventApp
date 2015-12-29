@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 26/12/2015
- * Time: 16:42
+ * Apres la verfication de la session admin
+ * permet de retourner le nombre de page des inscrit dans un evenement donné par son id
+ * 20 participants par page
  */
 include "adminCheck.php";
 include_once "../Imports.php";

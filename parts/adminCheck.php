@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 17:26
+ * Verifier si la session admin est toujours Valide
+ * pour but d'autoriser ou interdir l'execution des parties special a l'administration
  */
 session_start();
 if(isset($_SESSION["admn"])&&isset($_SESSION["start"])&&isset($_SESSION["expire"])){

@@ -8,59 +8,71 @@ require_once "Securite.php";
 class Inscription
 {
     /**
+     * id de l'evenement
      * @var int
      */
     public $idEvent;
     /**
+     * id d'inscription
      * @var int
      */
     public $idInsc;
     /**
+     * genre ('Monsieur','Madame')
      * @var string
      */
     public $genre;
     /**
-     * genre ('Monsieur','Madame')
+     * nom
      * @var string
      */
     public $nom;
     /**
+     * prenom
      * @var string
      */
     public $prenom;
     /**
+     * Niveau d'experiance('Débutant','Confirmé','Expert')
      * @var string
      */
     public $niveauExp;
     /**
-     * Niveau d'experiance('Débutant','Confirmé','Expert')
+     * email
      * @var string
      */
     public $email;
     /**
+     * tel
      * @var string
      */
     public $tel;
     /**
+     * Adresse postal
      * @var string
      */
     public $adressePost;
     /**
+     * departement
      * @var string
      */
     public $dept;
     /**
+     * pays
      * @var string
      */
     public $pays;
     /**
-     * designe l'ensemble des repas (chaine de caractaire ou chaque caractaire designe une journée de l'evenement)
-     * 1 = un repas
-     * 0 = pas de repas
+     * designe l'ensemble des repas (chaine de caractaire ou chaque caractaire designe une journée de l'evenement) <br/>
+     * 1 = un repas <br/>
+     * 0 = pas de repas <br/>
      * @var string
      */
     public $repas;
     /**
+     * pdf a generer ou pas <br/>
+     * 1 = a generer  <br/>
+     * 0 = ne pas generer  <br/>
      * @var string
      */
     public $pdf;

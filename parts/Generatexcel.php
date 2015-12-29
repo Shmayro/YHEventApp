@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 26/12/2015
- * Time: 21:34
+ * apres la verification de la session admin
+ * Permet de Generer un Excel contenant tout les participants d'un Event avec l'id $_GET["EvId"]
+ *
  */
 include "adminCheck.php";
 require "../Imports.php";
@@ -37,21 +36,19 @@ if (isset($_GET["EvId"])) {
     </thead>
     <tbody id="partcipentsTable">
     <?php
-    //$out = fopen("php://output", 'w');
     foreach ((array)$inscev as $Pobj) {
         $np=(($Pobj->genre=="Monsieur")?"M. ":"Mme ").$Pobj->nom." ".$Pobj->prenom;
         ?>
         <tr>
-            <td><?php echo $np; ?></td>
-            <td><?php echo $Pobj->niveauExp; ?></td>
-            <td><?php echo $Pobj->email; ?></td>
-            <td><?php echo $Pobj->tel; ?></td>
-            <td><?php echo $Pobj->adressePost; ?></td>
-            <td><?php echo $Pobj->dept; ?></td>
-            <td><?php echo $Pobj->pays; ?></td>
+            <td><?php echo Securite::html($np); ?></td>
+            <td><?php echo Securite::html($Pobj->niveauExp); ?></td>
+            <td><?php echo Securite::html($Pobj->email); ?></td>
+            <td><?php echo Securite::html($Pobj->tel); ?></td>
+            <td><?php echo Securite::html($Pobj->adressePost); ?></td>
+            <td><?php echo Securite::html($Pobj->dept); ?></td>
+            <td><?php echo Securite::html($Pobj->pays); ?></td>
         </tr>
     <?php }
-    //fclose($out);
 }
 ?>
 </tbody>

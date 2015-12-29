@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 28/12/2015
- * Time: 19:45
+ * apres verification de la session admin
+ * permet de retouner un objet Evenement demandé sous format json
+ * (utilisé pour la modification d'events)
  */
 include "adminCheck.php";
 include_once "../Imports.php";

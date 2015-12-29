@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 26/12/2015
- * Time: 15:48
+ * Verifie si la session admin est valide
+ * permet d'afficher une pagination des participants d'un evenement avec l'id $_POST["EvId"]
+ * et des bouttons pour afficher les repas ou les statistiques ou la generation de tout les pdf pour tout les participants
  */
 include "adminCheck.php";
 include_once "../Imports.php";
@@ -41,6 +40,7 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
         <div class="row">
             <script>
                 var totalPages;
+                //retourne le nombre total des pages
                 $.ajax({
                     url: 'parts/getnumPspages.php?EvId=<?php echo $EvId;?>',
                     success:function (html) {
@@ -50,6 +50,7 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
                         $("#totalpages").html(" /"+html);
                     }
                 });
+                //affiche la liste des participants selon le page index
                 $.ajax({
                     method:"POST",
                     url:'parts/getPsadmin.php',
@@ -60,7 +61,10 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
                         $("#partcipentsTable").append(PS);
                     }
                 });
+
                 $(function(){
+                    //chargement complet de la page
+                    //evenement lors du clique sur page suivante
                     $("#prev").click(function(e){
                         e.preventDefault();
                         var num=$("#pageindex").val();
@@ -68,6 +72,7 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
                             num--;
                         $("#pageindex").val(num).change();
                     });
+                    //evenement du clique sur boutton suivant
                     $("#suiv").click(function(e){
                         e.preventDefault();
                         var num=$("#pageindex").val();
@@ -75,9 +80,12 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
                             num++;
                         $("#pageindex").val(num).change();
                     });
+                    //avoir la liste des participants d'une page lors de la modification de la pageindex
                     $("#pageindex").on("change input",function(){
                         var num=$("#pageindex").val();
+                        //verification de la pageindex
                         if(num<=totalPages && num>=1){
+                            //dans la limite
                             $.ajax({
                                 method:"POST",
                                 url:'parts/getPsadmin.php',
@@ -89,6 +97,7 @@ $evname=$evDAO->ShowEvent($EvId)->titleEvent;
                             });
                         }
                         else{
+                            //hors limite
                             $("#pageindex").val(1).change();
                         }
                     });

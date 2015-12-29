@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 21:47
+ * Deconnection
  */
 session_start();
 session_destroy();

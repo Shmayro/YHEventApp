@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 18:32
+ * Page d'acceuil de la partie administration du site
  */
 include "parts/adminCheck.php";
 ?>
@@ -17,7 +14,7 @@ include "parts/adminCheck.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Admin Pannel YHEventApp</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -84,11 +81,14 @@ include "parts/adminCheck.php";
 
 <!-- Menu Toggle Script -->
 <script>
+    //id de event selectionné
     var evid=null;
+    //code de la side bar
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    //recupère les events avec pagination
     $.ajax({
         url: "parts/EventsLimitedadmin.php",
         type: "post",
@@ -99,7 +99,8 @@ include "parts/adminCheck.php";
     });
 
     $(function(){
-
+        //chargement complet de la page
+        //click deconnection
         $("#deco").click(function(){
             $.ajax({
                 url: "parts/deco.php",
@@ -109,6 +110,7 @@ include "parts/adminCheck.php";
                 }
             });
         });
+        //click Events au menu
         $("#events").click(function(){
             $.ajax({
                 url: "parts/EventsLimitedadmin.php",
@@ -119,6 +121,7 @@ include "parts/adminCheck.php";
                 }
             });
         });
+        //selectionnner un evennement event
         $(document).on('click', '.SelectEventbtn', function(){
             evid=$(this).attr("id");
             $.ajax({
@@ -131,9 +134,10 @@ include "parts/adminCheck.php";
                 }
             });
         });
-
+        //click sur edition event pour un event
         $(document).on('click', '.EditEventbtn', function(){
             evid=$(this).attr("id");
+            //remplir les informations actuels de l'event sur le formulaire
             $.ajax({
                 url: "parts/getjsonEvent.php",
                 type: "post",
@@ -153,6 +157,7 @@ include "parts/adminCheck.php";
             });
 
         });
+        //click delete pour un event
         $(document).on('click', '.DeletetEventbtn', function(){
             evid=$(this).attr("id");
             if(confirm("Voulez Vous Vraiment Supprimer Cet Evenement?")) {
@@ -166,6 +171,7 @@ include "parts/adminCheck.php";
                 });
             }
         });
+        //clique pour avoir l'invitation en pdf d'un participant
         $(document).on('click', '.genpdf', function(e){
             e.preventDefault();
             $.ajax({
@@ -181,6 +187,7 @@ include "parts/adminCheck.php";
 </body>
 <script type="text/javascript">
     $(function(){
+        //special pour afficher les statistiques et les repas d'un evenement dans le modal #modalCbody
         $(document).on('click', '.getextrainfos', function(e){
             e.preventDefault();
             $("#modalCbody").empty();

@@ -1,4 +1,6 @@
 <?php
+//Imports
+
 $cryptingKey="HarounShmayroYesWeCan";
 $serveradr="//".$_SERVER['HTTP_HOST']."/YHEventApp/";
 date_default_timezone_set('UTC');

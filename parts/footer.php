@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 18:49
- */
+//Footer
 ?>
 <footer class="footer section section-primary">
     <div class="container">

@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 24/12/2015
- * Time: 18:47
+ * Meme chose que EventsLimited.php sauf que ici on verifie si la session Admin est valide
+ *
+ * chaque evenment propose des boutons(Select,Edit,Delete)
  */
 include "adminCheck.php";
 ?>
@@ -12,7 +11,6 @@ include "adminCheck.php";
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center">Events</h1>
-                <p class="text-center lead">A subtitle.</p>
             </div>
         </div>
         <ul id="Events" style="padding: 0px" class="row grid cs-style-3">

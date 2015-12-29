@@ -1,14 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 09:13
+ * permet de retourner des evenements prés formatés en Html selon le besoin d'une autre page appelante
+ * pour le coté client
+ *
+ * par defaut la première page est affichée
+ * il est possible de modifier la valeur si on envoit $_POST["numPage"]
+ *
+ * on affiche 6 Events max par page (peut etre modifier dans $nbrparpage)
+ *
+ * on affiche aussi l'etat de l'evenement avec le boutton aproprié (passé, debutera dans une date,Inscription ouverte)
  */
 include "../Imports.php";
 $numPage = 1;
 $nbrparpage=6;
 if (isset($_POST["numPage"])) {
+    //modif de la page
     $numPage = Securite::bdd($_POST["numPage"]);
 }
 $eventsobj = $evDAO->ShowAllEventsLimited(($numPage - 1)*$nbrparpage, $nbrparpage);
@@ -46,22 +52,30 @@ foreach ((array)$eventsobj as $eventobj) {
                     </div>
                 </div>
                 <?php
+
+                //extrait la date actuelle du serveur
                 $today = date("Y-m-d H:i:s");
+
+                //recuperer les date debut et fin d'inscription
                 $debutInsc= date_format(date_create(Securite::html($eventobj->datedebutInsc)), "Y-m-d H:i:s");
                 $finInsc= date_format(date_create(Securite::html($eventobj->datefinInsc)), "Y-m-d H:i:s");
 
+
                 if ($debutInsc <= $today && $finInsc >= $today) {
+                    //Inscription Ouverte
                     ?>
                     <a class="btn btn-sm btn-success inscEventbtn"
                        id="<?php echo Securite::html($eventobj->idEvent); ?>"
                        data-toggle="modal" data-target="#inscForm">S'inscrire</a>
                     <?php
                 }else if($debutInsc > $today){
-
+                    //avant la periode d'inscription
                     ?>
                     <a class="btn btn-sm btn-info inscEventbtn">Debut le<?php echo date_format(date_create(Securite::html($eventobj->datedebutEvent)), "d/m"); ?></a>
                     <?php
                 }else{
+                    //aprés la periode d'inscription
+                    //il est plus possible de s'inscrir
                     ?>
                     <a class="btn btn-sm btn-danger inscEventbtn">Passé</a>
                     <?php

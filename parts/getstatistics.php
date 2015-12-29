@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 27/12/2015
- * Time: 00:43
+ * Apres la verfication de la session Admin
+ * retourne un camembert des statistiques de l'evenement avec l'id $_GET["evid"]
+ * le nombre des participants par Niveau d'experiance
  */
 include "adminCheck.php";
 include "../Imports.php";
