@@ -31,6 +31,9 @@ foreach ((array)$eventsobj as $eventobj) {
                 <a class="btn btn-sm btn-danger DeletetEventbtn" style="left: 20px;right: inherit;"
                    id="<?php echo Securite::html($eventobj->idEvent); ?>"
                    data-toggle="modal" data-target="#DelForm">Delete</a>
+                <a class="btn btn-sm btn-warning EditEventbtn" style="left: 80px;right: inherit;"
+                   id="<?php echo Securite::html($eventobj->idEvent); ?>"
+                   data-toggle="modal" href="#" data-target="#EvForm">Edit</a>
                 <a class="btn btn-sm btn-success SelectEventbtn"
                    id="<?php echo Securite::html($eventobj->idEvent); ?>"
                 >Select</a>

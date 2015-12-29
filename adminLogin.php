@@ -1,11 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Haroun
- * Date: 25/12/2015
- * Time: 17:35
+ * page d'authentification pour accéder a la partie administration
+ *
+ */
+
+/**
+ * inclue import.php
+ *
  */
 include "Imports.php";
+
 if(isset($_POST["username"]) && isset($_POST["pass"])) {
     $user=$_POST["username"];
     $pass=$_POST["pass"];
@@ -61,14 +65,9 @@ if(isset($_POST["username"]) && isset($_POST["pass"])) {
     <form class="form-signin" action="adminLogin.php" method="post" >
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUsername" class="sr-only">Email address</label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Email address" required autofocus>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 

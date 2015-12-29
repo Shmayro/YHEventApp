@@ -28,6 +28,7 @@ create table inscription(
     pdf int DEFAULT 0,
     foreign key (idEvent) references Event(idEvent)
 );
+
 CREATE table master(
   username VARCHAR(300),
   pass VARCHAR(300)

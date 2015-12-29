@@ -17,7 +17,6 @@ if(isset($_SESSION["admn"])&&isset($_SESSION["start"])&&isset($_SESSION["expire"
 }else{
     session_destroy();
     header("location://".$_SERVER['HTTP_HOST']."/YHEventApp/");
-    echo "<script>location.reload();</script>";
     die();
 }
 ;

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: shmayro
- * Date: 26/10/15
- * Time: 11:23
+ * Sert a etablir une connexion a la base de données
  */
 $hostname = "localhost";
 $dbname = "YHEventApp";

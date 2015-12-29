@@ -19,14 +19,23 @@ if (isset($_POST["titleEvent"]) && isset($_POST["logoEvent"]) && isset($_POST["l
 
     $EvObj=new Event(0,$titleEvent,$logoEvent,$lieuEvent,$imgEvent,$datedebutEvent,$datefinEvent,$datedebutInsc,$datefinInsc);
 
-    $etatEV=$evDAO->addEvent($EvObj);
+    $msgtype="Ajout";
+    $etatEV=null;
+    //idEv
+    if(isset($_POST["idEv"])) {
+        $msgtype="Modification";
+        $numev=$_POST["idEv"];
+        $etatEV = $evDAO->updateEvent($numev,$EvObj);
+    }
+    else
+        $etatEV=$evDAO->addEvent($EvObj);
 
         if($etatEV==1){
-        ?><div id='confirmsg' class="alert alert-success" role="alert">Ajout Accéptée !!</div><?php
+        ?><div id='confirmsg' class="alert alert-success" role="alert"><?php echo $msgtype; ?> Accéptée !!</div><?php
     }else{
-        ?><div id='confirmsg' class="alert alert-danger" role="alert">Erreur !! ,Ajout Annulée</div><?php
+        ?><div id='confirmsg' class="alert alert-danger" role="alert">Erreur !! ,<?php echo $msgtype; ?> Annulée</div><?php
     }}else{
 
-    ?><div id='confirmsg' class="alert alert-warning" role="alert">Formulaire Incomplet, Ajout Annulée</div><?php }
+    ?><div id='confirmsg' class="alert alert-warning" role="alert">Formulaire Incomplet, <?php echo $msgtype; ?> Annulée</div><?php }
 
 ?>

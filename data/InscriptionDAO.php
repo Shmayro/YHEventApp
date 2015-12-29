@@ -3,12 +3,8 @@
 require_once("connex.php");
 require_once("Inscription.php");
 require_once("EventDAO.php");
-/**
- * Created by PhpStorm.
- * User: shmayro
- * Date: 26/10/15
- * Time: 15:08
- */
+
+
 $evDAO=new EventDAO();
 
 $ShowAllInscriptionStatement = $db->prepare("select * from Inscription");
@@ -16,8 +12,9 @@ $ShowAllInscriptionStatement = $db->prepare("select * from Inscription");
 $ShowInscriptionStatement = $db->prepare("select * from Inscription WHERE idInsc=:idInsc");
 $ShowInscriptionStatement->bindParam(":idInsc", $idInsc);
 
-$ShowInscriptionemailStatement = $db->prepare("select * from Inscription WHERE email=:email");
+$ShowInscriptionemailStatement = $db->prepare("select * from Inscription WHERE email=:email and idEvent=:idEvent");
 $ShowInscriptionemailStatement->bindParam(":email", $email);
+$ShowInscriptionemailStatement->bindParam(":idEvent", $idEvent);
 
 $ShowEventInscriptionStatement = $db->prepare("select * from Inscription WHERE idEvent=:idEvent");
 $ShowEventInscriptionStatement->bindParam(":idEvent", $idEvent);
@@ -58,8 +55,16 @@ $updateInscriptionStatement->bindParam(":pays", $pays);
 $updateInscriptionStatement->bindParam(":repas", $repas);
 $updateInscriptionStatement->bindParam(":pdf", $pdf);
 
+/**
+ * Class InscriptionDAO
+ * offre un ensemble de fonctions qui servent a extraire et inserer des Inscriptions dans la base de données en utilisant des requètes prèparés
+ */
 class InscriptionDAO
 {
+    /**
+     * retourne tout les inscriptions
+     * @return array|null
+     */
     public function ShowAllInscriptions()
     {
         $InscTable = null;
@@ -73,6 +78,11 @@ class InscriptionDAO
         }
     }
 
+    /**
+     * retourne une inscription par $id
+     * @param $id
+     * @return Inscription|null
+     */
     public function ShowInscription($id)
     {
         global $ShowInscriptionStatement;
@@ -86,11 +96,20 @@ class InscriptionDAO
             return $InscObj;
         }
     }
-    public function ShowInscriptionemail($emailText)
+
+    /**
+     * retourne inscription par @email, utilisé pour Verifier si une inscription existe deja dans l'ensemble des inscriptions d'un evenement avec id @idE
+     * @param $emailText
+     * @return Inscription|null
+     */
+    public function ShowInscriptionemail($idE,$emailText)
     {
         global $ShowInscriptionemailStatement;
         global $email;
+        global $idEvent;
+
         $InscObj=null;
+        $idEvent=$idE;
         $email = $emailText;
         if ($ShowInscriptionemailStatement->execute()) {
             while ($obj = $ShowInscriptionemailStatement->fetchObject()) {
@@ -100,6 +119,11 @@ class InscriptionDAO
         }
     }
 
+    /**
+     * retourne la liste des Inscription d'un @id evenement donnée
+     * @param $idE
+     * @return array|null
+     */
     public function ShowEventInscription($idE)
     {
         global $ShowEventInscriptionStatement;
@@ -114,7 +138,15 @@ class InscriptionDAO
             return $InscTable;
         }
     }
-    public function ShowEventPSLimited($idE,$from,$number)
+
+    /**
+     * retourne une liste des inscriptions d'un evenment de taille $number a partir d'un index $from
+     * @param $idE
+     * @param $from
+     * @param $number
+     * @return array|null
+     */
+    public function ShowEventPSLimited($idE, $from, $number)
     {
         $InscTable=null;
         global $ShowEventInscriptionStatementLimited;
@@ -133,6 +165,11 @@ class InscriptionDAO
         }
     }
 
+    /**
+     * Supprimer une Inscription par @id
+     * @param $id
+     * @return int
+     */
     public function deleteInscription($id)
     {
         global $deleteInscriptionStatement;
@@ -145,6 +182,16 @@ class InscriptionDAO
         }
     }
 
+    /**
+     * ajouter une Inscription
+     * une verfication a l'interieur de la Fonction permet de tester si la periode d'inscription et encore valide
+     * @param (Inscription)$obj
+     * @return int
+     * 1 = Executer avec Succes (Inscription Ajoutée)
+     * 0 = Ereur danns l'execution (Ajout Annulé)
+     * 2 = Periode d'inscription est passée (Ajout Annulé)
+     * 3 = l'Evenement de l'inscription n'existe pas (Ajout Annulé)
+     */
     public function addInscription($obj)
     {
         global $addInscriptionStatement;
@@ -194,7 +241,12 @@ class InscriptionDAO
 
     }
 
-    public function updateInscription($id,$obj)
+    /**
+     * @param $id
+     * @param $obj
+     * @return int
+     */
+    public function updateInscription($id, $obj)
     {
         global $updateInscriptionStatement;
         global $idEvent;

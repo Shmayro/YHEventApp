@@ -48,7 +48,7 @@ include "parts/adminCheck.php";
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
                 <a href="#">
-                    Start Bootstrap
+                    YHEventApp
                 </a>
             </li>
             <li>
@@ -97,6 +97,7 @@ include "parts/adminCheck.php";
             $("#page_content").append(html);
         }
     });
+
     $(function(){
 
         $("#deco").click(function(){
@@ -129,6 +130,28 @@ include "parts/adminCheck.php";
                     $("#page_content").append(html);
                 }
             });
+        });
+
+        $(document).on('click', '.EditEventbtn', function(){
+            evid=$(this).attr("id");
+            $.ajax({
+                url: "parts/getjsonEvent.php",
+                type: "post",
+                data: {EvId: $(this).attr("id")},
+                success: function (ev) {
+                    $("#titleEvent").val(ev.titleEvent);
+                    $("#logoEvent").val(ev.logoEvent);
+                    $("#lieuEvent").val(ev.lieuEvent);
+                    $("#imgEvent").val(ev.lieuEventPic);
+                    $("#datedebutInsc").val(ev.datedebutInsc);
+                    $("#datefinInsc").val(ev.datefinInsc);
+                    $("#datedebutEvent").val(ev.datedebutEvent);
+                    $("#datefinEvent").val(ev.datefinEvent);
+                    $("#submitbtnEvent").val(evid);
+                    $("#btnEvent").text("Modifier");
+                }
+            });
+
         });
         $(document).on('click', '.DeletetEventbtn', function(){
             evid=$(this).attr("id");

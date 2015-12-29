@@ -31,7 +31,7 @@ foreach ((array)$eventsobj as $eventobj) {
                     <div class="DateDebut">
                         <i class="glyphicon glyphicon-calendar"></i>
                         <span
-                            class="date"><?php echo date_format(date_create(Securite::html($eventobj->datedebutEvent)), "F d, o"); ?></span>
+                            class="date"><?php echo date_format(date_create(Securite::html($eventobj->datedebutEvent)), "F d, Y"); ?></span>
                         <i class="glyphicon glyphicon-time"></i>
                         <span
                             class="time"><?php echo date_format(date_create(Securite::html($eventobj->datedebutEvent)), "H:i"); ?></span>
@@ -39,7 +39,7 @@ foreach ((array)$eventsobj as $eventobj) {
                     <div class="DateFin">
                         <i class="glyphicon glyphicon-calendar"></i>
                         <span
-                            class="date"><?php echo date_format(date_create(Securite::html($eventobj->datefinEvent)), "F d, o"); ?></span>
+                            class="date"><?php echo date_format(date_create(Securite::html($eventobj->datefinEvent)), "F d, Y"); ?></span>
                         <i class="glyphicon glyphicon-time"></i>
                         <span class="time"><span
                                 class="time"><?php echo date_format(date_create(Securite::html($eventobj->datefinEvent)), "H:i"); ?></span></span>

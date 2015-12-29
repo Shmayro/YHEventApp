@@ -28,7 +28,7 @@ if (isset($_POST["genre"]) && isset($_POST["nom"]) && isset($_POST["prenom"]) &&
     }
 
     $inscObj=new Inscription($idEv,0,$genre,$nom,$prenom,$expLvl,$email,$tel,$adressePost,$dept,$pays,$repas,0);
-    if($InscDAO->ShowInscriptionemail($inscObj->email)==null){
+    if($InscDAO->ShowInscriptionemail($inscObj->idEvent,$inscObj->email)==null){
 
     $etatInscr=$InscDAO->addInscription($inscObj);
         //echo $etatInscr;

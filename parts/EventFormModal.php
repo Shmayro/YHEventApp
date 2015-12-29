@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Inscription</h4>
+                <h4 class="modal-title">Evènement</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" id="FormEv" method="post" action="parts/EventAdd.php">
@@ -90,14 +90,22 @@
                             $("#FormEv")[0].reset();
                             $("#FormEv,#btnEvent").show();
                             $("#events").click();
+
+                            $("#submitbtnEvent").removeAttr("value");
+
+                            $("#btnEvent").text("Ajouter");
                         });
                         $("#FormEv").submit(function (e) {
                             e.preventDefault();
                             var $this = $(this); // L'objet jQuery du formulaire
+                            //&idEv="+$("#submitbtnInsc").attr("value")$("#submitbtnEvent")
+                            var urlextraData="";
+                            if($("#submitbtnEvent").val()!=null)
+                                urlextraData="&idEv="+$("#submitbtnEvent").val();
                             $.ajax({
                                 url: $this.attr('action'),
                                 type: $this.attr('method'),
-                                data: $this.serialize(),
+                                data: $this.serialize()+urlextraData,
                                 success: function (html) {
                                     $("#EvForm").find(".modal-body").append(html);
                                     $("#FormEv,#btnEvent").hide();

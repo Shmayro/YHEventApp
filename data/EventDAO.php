@@ -1,13 +1,10 @@
 <?php
 
+
 require_once("connex.php");
 require_once("Event.php");
-/**
- * Created by PhpStorm.
- * User: shmayro
- * Date: 26/10/15
- * Time: 15:08
- */
+
+
 $ShowAllEventStatement = $db->prepare("select * from Event");
 
 $ShowAllEventLimitedStatement = $db->prepare("select * from Event limit :fromnumber,:nbrElem");
@@ -38,11 +35,20 @@ $updateEventStatement->bindParam(":lieuEvent", $lieuEvent);
 $updateEventStatement->bindParam(":lieuEventPic", $lieuEventPic);
 $updateEventStatement->bindParam(":datedebutEvent", $datedebutEvent);
 $updateEventStatement->bindParam(":datefinEvent", $datefinEvent);
-$addEventStatement->bindParam(":datedebutInsc", $datedebutInsc);
-$addEventStatement->bindParam(":datefinInsc", $datefinInsc);
+$updateEventStatement->bindParam(":datedebutInsc", $datedebutInsc);
+$updateEventStatement->bindParam(":datefinInsc", $datefinInsc);
 
+/**
+ * Classe EventDAO
+ * offre un ensemble de fonctions qui servent a extraire et inserer des Evenements dans la base de données en utilisant des requètes prèparés
+ */
 class EventDAO
 {
+    /**
+     * @return array|null
+     *
+     * retourne la liste de tout les Evenements
+     */
     public function ShowAllEvents()
     {
         $EventTable = null;
@@ -55,7 +61,14 @@ class EventDAO
             return $EventTable;
         }
     }
-    public function ShowAllEventsLimited($from,$number)
+
+    /**
+     * retourne une liste des evenements de taille $number a partir d'un index $from
+     * @param $from
+     * @param $number
+     * @return array|null
+     */
+    public function ShowAllEventsLimited($from, $number)
     {
         $EventTable = null;
         global $ShowAllEventLimitedStatement;
@@ -72,6 +85,11 @@ class EventDAO
         }
     }
 
+    /**
+     * retourne un evenement par $id
+     * @param $id
+     * @return Event|null
+     */
     public function ShowEvent($id)
     {
         global $ShowEventStatement;
@@ -86,6 +104,11 @@ class EventDAO
         }
     }
 
+    /**
+     * supprime un evenemnt par id
+     * @param $id
+     * @return int
+     */
     public function deleteEvent($id)
     {
         global $deleteEventStatement;
@@ -98,6 +121,11 @@ class EventDAO
         }
     }
 
+    /**
+     * ajout d'un evenement dans la base de données
+     * @param (Event)$obj
+     * @return int
+     */
     public function addEvent($obj)
     {
         global $addEventStatement;
@@ -126,7 +154,13 @@ class EventDAO
         }
     }
 
-    public function updateEvent($id,$obj)
+    /**
+     * mise a jour d'un evenement par $id, en remplacent ces champs par les champs de (Event)$obj donnees
+     * @param $id
+     * @param (Event)$obj
+     * @return int
+     */
+    public function updateEvent($id, $obj)
     {
         global $updateEventStatement;
         global $idEvent;
